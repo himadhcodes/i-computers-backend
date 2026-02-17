@@ -76,7 +76,7 @@ export function loginUser(req , res){
                     image : user.image,
                     isEmailVerified : user.isEmailVerified
 
-                } , "i-computer-54")
+                } , process.env.JWT_SECRET_KEY)
 
 
                     res.json({message : "Successfully LogIn",
@@ -84,7 +84,7 @@ export function loginUser(req , res){
                     })
 
                 } else{
-                    res.json({message : "Password invalid"})
+                    res.status(401).json({message : "Password invalid"})
                 }
             }
         }
