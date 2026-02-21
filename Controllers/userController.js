@@ -9,8 +9,8 @@ export function createUser(req, res) {
 
 	const user = new User({
 		email: req.body.email,
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
+		firstname: req.body.firstName,
+		lastname: req.body.lastName,
 		password: hashedPassword,
 	});
 	user
@@ -19,7 +19,7 @@ export function createUser(req, res) {
 			res.json({ message: "User created successfully" });
 		})
 		.catch((error) => {
-			res.json({ message: "Error creating user", error: error });
+			res.status(500).json({ message: "Error creating user", error: error });
 		});
 }
 
@@ -59,7 +59,7 @@ export function loginUser(req , res){
 
             if(user == null){
                 res.status(401).json({
-                    message : "User Not Found"
+                    message : "User Not Found",
                 })
 
             }else{
@@ -80,7 +80,8 @@ export function loginUser(req , res){
 
 
                     res.json({message : "Successfully LogIn",
-                        token : token
+                        token : token,
+						role : user.role
                     })
 
                 } else{
