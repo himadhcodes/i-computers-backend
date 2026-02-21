@@ -4,7 +4,7 @@ const productSchema = mongoose.Schema(
     {
         productId : {
             type : String,
-            require : true,
+            required : true,
             unique : true
         },
 
